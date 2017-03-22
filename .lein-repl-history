@@ -1,0 +1,7 @@
+(use 'figwheel-sidecar.repl)
+(use 'figwheel-sidecar.repl-api)
+(figwheel-sidecar.repl-api/start-figwheel! "android")
+(figwheel-sidecar.repl-api/cljs-repl)
+(use 'figwheel-sidecar.repl-api)
+(figwheel-sidecar.repl-api/start-figwheel! "android")
+(figwheel-sidecar.repl-api/cljs-repl)
