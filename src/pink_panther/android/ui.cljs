@@ -1,14 +1,17 @@
 (ns pink-panther.android.ui
+  (:require-macros [pink-panther.android.ui-helper :as ui])
   (:require [reagent.core :as r]))
 
 (def ReactNative (js/require "react-native"))
 
 (def app-registry (.-AppRegistry ReactNative))
-(def text (r/adapt-react-class (.-Text ReactNative)))
-(def view (r/adapt-react-class (.-View ReactNative)))
-(def list-view (r/adapt-react-class (.-ListView ReactNative)))
-(def image (r/adapt-react-class (.-Image ReactNative)))
-(def touchable-highlight (r/adapt-react-class (.-TouchableHighlight ReactNative)))
+(ui/register Text)
+(ui/register TextInput)
+(ui/register View)
+(ui/register ScrollView)
+(ui/register ListView)
+(ui/register Image)
+(ui/register TouchableHighlight)
 
 (defn alert [title]
       (.alert (.-Alert ReactNative) title))
@@ -29,7 +32,10 @@
                       :padding-horizontal 10
                       :padding-vertical 5})
 
-(defn todo-element [contents]
+(defn todo-element [cursor]
   [view {:style component-container-style}
    [view {:style title-bar-style}
-    [text {:style {:font-size 16 :font-weight "500"}} contents]]])
+    [text-input {:style {:font-size 16 :font-weight "500" :padding-bottom 5}
+                 :underline-color-android "transparent"
+                 :on-change-text #(swap! cursor assoc :value %)}
+                (:value @cursor)]]])
