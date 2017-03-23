@@ -7,14 +7,14 @@
 
 (def logo-img (js/require "./images/cljs.png"))
 
-(defonce state (r/atom {:tasks [{:value "One"}
+(defonce state (r/atom {:tasks [{:value "One" :done? true}
                                 {:value "Two"}
                                 {:value "Three"}]}))
 
 (defn app-root []
   (let [greeting (subscribe [:get-greeting])]
     (fn []
-      [ui/view
+      [ui/view {:style {:margin 5}}
        [ui/scroll-view
         (->> @state :tasks count
              range
