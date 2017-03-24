@@ -11,6 +11,11 @@
                                 {:value "Two"}
                                 {:value "Three"}]}))
 
+(defn remove-item [id]
+  (swap! state update :tasks (fn [tasks] (->> tasks
+                                              (remove #(= (:id %) id))
+                                              vec))))
+
 (defn app-root []
   (let [greeting (subscribe [:get-greeting])]
     (fn []
@@ -18,7 +23,7 @@
        [ui/scroll-view
         (->> @state :tasks count
              range
-             (map (fn [i] ^{:key i} [ui/todo-element (r/cursor state [:tasks i])])))
+             (map (fn [i] ^{:key i} [ui/todo-element (r/cursor state [:tasks i]) remove-item])))
         [ui/touchable-highlight {:style {:background-color "#999" :padding 10 :border-radius 5}
                                  :on-press #(swap! state update :tasks conj {:value "New Task"})}
          [ui/text {:style {:color "white" :text-align "center" :font-weight "bold"}} "press me"]]]])))

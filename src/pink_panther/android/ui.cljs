@@ -38,7 +38,8 @@
                       :padding-bottom 5
                       :flex 1})
 
-(defn todo-element [cursor]
+(defn todo-element [cursor remove-fn]
+  (swap! cursor update :id #(or % (gensym)))
   [view {:style component-container-style}
    [view {:style title-bar-style}
     [view {:style {:flex-direction "row"}}
@@ -52,4 +53,4 @@
                      :underline-color-android "transparent"
                      :on-change-text #(swap! cursor assoc :value %)}
          (:value @cursor)]])
-     [touchable-highlight {:on-press #()} [text  "Delete"]]]]])
+     [touchable-highlight {:on-press #(remove-fn (:id @cursor))} [text  "Delete"]]]]])
