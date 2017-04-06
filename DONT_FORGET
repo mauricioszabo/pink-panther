@@ -1,0 +1,15 @@
+(def component-container-style {:border-radius 3
+                                :border-color "#d6d7da"
+                                :background-color "#ffffff"
+                                :margin-bottom 10
+                                ; :margin-vertical 5
+                                :overflow "hidden"
+                                :border-width 0.5})
+
+(def title-bar-style {:border-bottom-width 0.5
+                      :border-top-left-radius 3
+                      :border-top-right-radius 2.5
+                      :border-bottom-color "#d6d7da"
+                      :background-color "#e6e7e8"
+                      :padding-horizontal 10
+                      :padding-vertical 5})
