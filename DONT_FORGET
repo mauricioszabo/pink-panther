@@ -13,3 +13,8 @@
                       :background-color "#e6e7e8"
                       :padding-horizontal 10
                       :padding-vertical 5})
+
+(def todo-text-style {:font-size 16
+                      :font-weight "500"
+                      :padding-bottom 5
+                      :flex 1})
